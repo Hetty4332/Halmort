@@ -1,0 +1,9 @@
+com\haulmont\testtask\model\Credit.class
+com\haulmont\testtask\model\Client.class
+com\haulmont\testtask\controller\RegistrationController.class
+com\haulmont\testtask\model\Bank.class
+com\haulmont\testtask\model\CreditOffer.class
+com\haulmont\testtask\config\SecurityConfig.class
+com\haulmont\testtask\config\WebConfig.class
+com\haulmont\testtask\controller\MainController.class
+com\haulmont\testtask\MainUI.class
