@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>talks</title>
+    <meta charset="utf-8">
+</head>
+<body>
+<h1>Расписание докладов</h1>
+
+<table border="1">
+    <tr>
+        <th>
+            Название доклада
+        </th>
+        <th>
+            Время доклада
+        </th>
+    </tr>
+    <tr th:each="talk : ${talks}">
+        <td th:utext="${talk.getName()}"></td>
+        <td th:utext="${talk.schedule.date.getDate()} + '.' + ${talk.schedule.date.getMonth()}"></td>
+    </tr>
+</table>
+<div>
+    <form th:action="@{/banks}" method="post" th:object="${bank}">
+        <div>
+            <input type="text" th:field="*{name}"/>
+        </div>
+        <div>
+            <input type="datetime-local" th:field="*{schedule.date}"/>
+        </div>
+        <div>
+            <input type="submit" th:value="создать"/>
+        </div>
+    </form>
+</div>
+</body>
+</html>

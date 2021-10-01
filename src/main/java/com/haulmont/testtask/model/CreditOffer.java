@@ -11,9 +11,9 @@ public class CreditOffer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false)
     private Long id;
-    @OneToOne
+    @OneToOne(mappedBy = "creditOffer", fetch = FetchType.EAGER)
     private Client client;
-    @OneToOne
+    @OneToOne(mappedBy = "creditOffer", fetch = FetchType.LAZY)
     private Credit credit;
     @Column
     private int sumCredit;

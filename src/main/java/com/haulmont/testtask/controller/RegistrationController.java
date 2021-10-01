@@ -18,6 +18,13 @@ public class RegistrationController {
     @Autowired
     private UserDetailsServiceImpl userService;
 
+
+    @GetMapping("/login")
+    public String login(Model model){
+
+        return "login";
+
+    }
     @GetMapping("/registration")
     public String registration(Model model) {
         model.addAttribute("userForm", new User());

@@ -12,7 +12,11 @@ public class Credit {
     @Column(nullable = false)
     private Long id;
     @Column
-    private int limit;
+    private int creditLimit;
     @Column
     private int interestRate;
+    @ManyToOne (optional = false, cascade = CascadeType.ALL)
+    private Bank creditBank;
+    @OneToOne(optional = false, cascade = CascadeType.ALL)
+    private CreditOffer creditOffer;
 }
