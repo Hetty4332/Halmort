@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>talks</title>
+    <meta charset="utf-8">
+</head>
+<body>
+<h1>Список клиентов банка</h1>
+
+<table border="1">
+    <tr>
+        <th>
+            ФИО
+        </th>
+        <th>
+            Номер телефона
+        </th>
+        <th>
+            Электронная почта
+        </th>
+        <th>
+            Номер паспорта
+        </th>
+    </tr>
+    <tr th:each="client : ${clients}">
+        <td th:utext="${client.getName()}"></td>
+        <td th:utext="${client.getPhoneNumber()}"></td>
+        <td th:utext="${client.getEmail()}"></td>
+        <td th:utext="${client.getPassportNumber()}"></td>
+    </tr>
+</table>
+<div>
+    <form th:action="@{/clients}" method="post" th:object="${client}">
+        <div>
+            <input type="text" th:field="*{name}"/>
+        </div>
+        <div>
+            <input type="text" th:field="*{phoneNumber}"/>
+        </div>
+        <div>
+            <input type="text" th:field="*{email}"/>
+        </div>
+        <div>
+            <input type="text" th:field="*{passportNumber}"/>
+        </div>
+        <div>
+            <input type="submit" th:value="создать"/>
+        </div>
+    </form>
+</div>
+</body>
+</html>

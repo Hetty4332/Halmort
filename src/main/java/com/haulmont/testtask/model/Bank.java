@@ -12,9 +12,9 @@ public class Bank {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @OneToMany(mappedBy = "creditBank", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "creditBank", fetch = FetchType.LAZY)
     private List<Credit> credits;
-    @OneToMany(mappedBy = "clientBank", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "clientBank", fetch = FetchType.EAGER)
     private List<Client> clients;
 
 }

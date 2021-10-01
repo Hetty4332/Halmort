@@ -16,18 +16,18 @@
             Время доклада
         </th>
     </tr>
-    <tr th:each="talk : ${talks}">
-        <td th:utext="${talk.getName()}"></td>
-        <td th:utext="${talk.schedule.date.getDate()} + '.' + ${talk.schedule.date.getMonth()}"></td>
+    <tr th:each="credit : ${credits}">
+        <td th:utext="${credit.creditLimit}"></td>
+        <td th:utext="${credit.interestRate}"></td>
     </tr>
 </table>
 <div>
-    <form th:action="@{/banks}" method="post" th:object="${bank}">
+    <form th:action="@{/credits}" method="post" th:object="${credit}">
         <div>
-            <input type="text" th:field="*{name}"/>
+            <input type="text" th:field="*{creditLimit}"/>
         </div>
         <div>
-            <input type="datetime-local" th:field="*{schedule.date}"/>
+            <input type="datetime-local" th:field="*{interestRate}"/>
         </div>
         <div>
             <input type="submit" th:value="создать"/>
