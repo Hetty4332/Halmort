@@ -1,8 +1,6 @@
 package com.haulmont.testtask.controller;
 
-import com.haulmont.testtask.model.Bank;
 import com.haulmont.testtask.model.Credit;
-import com.haulmont.testtask.repository.BankRepository;
 import com.haulmont.testtask.repository.CreditRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +18,7 @@ public class CreditController {
     private CreditRepository creditRepository;
 
     @GetMapping("/credits")
-    public String getBanks(Model model) {
+    public String getCredits(Model model) {
         List<Credit> credits = new ArrayList<>();
         credits.addAll(creditRepository.findAll());
         model.addAttribute("credits", credits);
@@ -29,19 +27,13 @@ public class CreditController {
     }
 
     @PostMapping("/credits")
-    public String addBank(@ModelAttribute("bank") Credit credit) {
+    public String addCredit(@ModelAttribute("bank") Credit credit) {
         creditRepository.save(credit);
         return "credits";
     }
-
-    private int amountPercent()
-    {
-
-        return 1;
-    }
-    private int amountOfMonthlyPayment(Credit credit)
-    {
-        //(credit.getCreditOffer().getSumCredit()/ +credit.getInterestRate()
-        return 2;
+    @PostMapping("/credits")
+    public String deleteCredit(@ModelAttribute("bank") Credit credit) {
+        creditRepository.delete(credit);
+        return "credits";
     }
 }

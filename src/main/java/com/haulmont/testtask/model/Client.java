@@ -19,9 +19,9 @@ public class Client {
     private String email;
     @Column
     private String passportNumber;
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne()
     private Bank clientBank;
-    @OneToOne(optional = false, cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     private CreditOffer creditOffer;
 
 }

@@ -21,17 +21,24 @@ public class ClientController {
     private ClientRepository clientRepository;
 
     @GetMapping("/clients")
-    public String getBanks(Model model) {
+    public String getClient(Model model) {
         List<Client> clients = new ArrayList<>();
         clients.addAll(clientRepository.findAll());
-        model.addAttribute("clients",clients);
+        model.addAttribute("clients", clients);
         model.addAttribute("client", new Client());
         return "clients";
     }
+
     @PostMapping("/clients")
-    public String addBank (@ModelAttribute("client") Client client)
-    {
-       clientRepository.save(client);
+    public String addClient(@ModelAttribute("client") Client client) {
+        clientRepository.save(client);
         return "clients";
     }
+
+    @PostMapping("/clients")
+    public String deleteClient(@ModelAttribute("client") Client client) {
+        clientRepository.delete(client);
+        return "clients";
+    }
+
 }

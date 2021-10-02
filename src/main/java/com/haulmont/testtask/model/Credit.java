@@ -17,6 +17,6 @@ public class Credit {
     private int interestRate;
     @ManyToOne (optional = false, cascade = CascadeType.ALL)
     private Bank creditBank;
-    @OneToOne(optional = false, cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     private CreditOffer creditOffer;
 }
