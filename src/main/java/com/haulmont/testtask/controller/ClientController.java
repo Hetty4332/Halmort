@@ -32,7 +32,7 @@ public class ClientController {
     @PostMapping("/edit")
     public String addClient(@ModelAttribute("client") Client client) {
         clientRepository.save(client);
-        return "clients";
+        return "redirect:/clients";
     }
 
     @PostMapping("/clients")
@@ -41,11 +41,16 @@ public class ClientController {
         return "clients";
     }
     @GetMapping("/edit/{id}")
-    public String getClient(@PathVariable Long id) {
+    public String getClient(@PathVariable Long id, Model model) {
 
-        Client client= clientRepository.findById(id).get();//TODO Сделать тут ElseThrow и выкидыватьк какую-нибудь ошибку, если объект null
-
-        return "clients";
+        Client client= clientRepository.findById(id).orElse(new Client());//TODO Сделать тут ElseThrow и выкидыватьк какую-нибудь ошибку, если объект null
+        model.addAttribute("client", client);
+        return "edit";
     }
+    @GetMapping("/edit")
+    public String addClient(Model model) {
 
+        model.addAttribute("client", new Client());
+        return "edit";
+    }
 }

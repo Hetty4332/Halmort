@@ -18,7 +18,7 @@ public class CreditOfferController {
     private CreditOfferRepository creditOfferRepository;
 
     @GetMapping("/creditOffers")
-    public String getBanks(Model model) {
+    public String getCreditOffer(Model model) {
         List<CreditOffer> creditOffers = new ArrayList<>();
         creditOffers.addAll(creditOfferRepository.findAll());
         model.addAttribute("creditOffers", creditOffers);
@@ -27,7 +27,7 @@ public class CreditOfferController {
     }
 
     @PostMapping("/creditOffers")
-    public String addBank(@ModelAttribute("bank") CreditOffer creditOffer) {
+    public String addCreditOffer(@ModelAttribute("creditOffer") CreditOffer creditOffer) {
         creditOfferRepository.save(creditOffer);
         return "creditOffers";
     }

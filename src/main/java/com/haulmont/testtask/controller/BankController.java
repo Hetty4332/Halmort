@@ -32,11 +32,11 @@ public class BankController {
         bankRepository.save(bank);
         return "banks";
     }
-    @PostMapping("/banks")
+/*    @PostMapping("/banks")
     public String deleteBank (@ModelAttribute("bank") Bank bank)
     {
         bankRepository.delete(bank);
         return "banks";
-    }
+    }*/
 
 }

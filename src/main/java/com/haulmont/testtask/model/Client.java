@@ -19,7 +19,7 @@ public class Client {
     private String email;
     @Column
     private String passportNumber;
-    @ManyToOne()
+    @ManyToOne
     private Bank clientBank;
     @OneToOne(cascade = CascadeType.ALL)
     private CreditOffer creditOffer;

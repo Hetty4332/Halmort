@@ -20,9 +20,15 @@ public class RegistrationController {
 
 
     @GetMapping("/login")
-    public String login(Model model){
+    public String login(){
 
         return "login";
+
+    }
+    @GetMapping("/")
+    public String getMain(Model model){
+
+        return "main";
 
     }
     @GetMapping("/registration")

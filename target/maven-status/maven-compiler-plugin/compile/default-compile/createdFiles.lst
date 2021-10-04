@@ -7,6 +7,7 @@ com\haulmont\testtask\controller\CreditController.class
 com\haulmont\testtask\repository\ClientRepository.class
 com\haulmont\testtask\repository\CreditRepository.class
 com\haulmont\testtask\controller\ClientController.class
+com\haulmont\testtask\service\CreditService.class
 com\haulmont\testtask\model\CreditOffer.class
 com\haulmont\testtask\BankApplication.class
 com\haulmont\testtask\model\Role.class
@@ -15,7 +16,9 @@ com\haulmont\testtask\controller\RegistrationController.class
 com\haulmont\testtask\config\SecurityConfig.class
 com\haulmont\testtask\repository\BankRepository.class
 com\haulmont\testtask\model\Credit.class
+com\haulmont\testtask\controller\CreditOfferController.class
 com\haulmont\testtask\model\Client.class
+com\haulmont\testtask\repository\CreditOfferRepository.class
 com\haulmont\testtask\model\Bank.class
 com\haulmont\testtask\model\ChartOfPayments.class
 com\haulmont\testtask\repository\UserRepository.class

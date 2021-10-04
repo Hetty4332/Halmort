@@ -4,11 +4,11 @@ import com.haulmont.testtask.model.Credit;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-@RequiredArgsConstructor
+
 @Service
 public class CreditService {
 
-    private final Credit credit;
+    private Credit credit;
 
     // долговая часть ежемесячного платежа
     private int deptPaart(int creditTime) {

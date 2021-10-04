@@ -27,13 +27,13 @@ public class CreditController {
     }
 
     @PostMapping("/credits")
-    public String addCredit(@ModelAttribute("bank") Credit credit) {
+    public String addCredit(@ModelAttribute("credit") Credit credit) {
         creditRepository.save(credit);
         return "credits";
     }
-    @PostMapping("/credits")
-    public String deleteCredit(@ModelAttribute("bank") Credit credit) {
+/*    @PostMapping("/credits")
+    public String deleteCredit(@ModelAttribute("credit") Credit credit) {
         creditRepository.delete(credit);
         return "credits";
-    }
+    }*/
 }
