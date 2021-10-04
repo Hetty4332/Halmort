@@ -34,11 +34,11 @@ public class ClientController {
         clientRepository.save(client);
         return "redirect:/clients";
     }
-
-    @PostMapping("/clients")
-    public String deleteClient(@ModelAttribute("client") Client client) {
-        clientRepository.delete(client);
-        return "clients";
+//тут сделать либо пост либо делет.кнопку обернуть
+    @GetMapping("/deleteClient/{id}")
+    public String deleteClient(@PathVariable Long id) {
+        clientRepository.deleteById(id);
+        return "redirect:/clients";
     }
     @GetMapping("/edit/{id}")
     public String getClient(@PathVariable Long id, Model model) {
