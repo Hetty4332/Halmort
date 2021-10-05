@@ -6,12 +6,11 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class CreditService {
+public class CreditOfferService {
 
-    private Credit credit;
 
     // долговая часть ежемесячного платежа
-    private int deptPaart(int creditTime) {
+     public int deptPaart(int creditTime, Credit credit) {
         int s = credit.getCreditOffer().getSumCredit();
         int n = creditTime;
         return s / n;
@@ -19,15 +18,14 @@ public class CreditService {
     }
 
     //проценты в ежемесячном платеже
-    private int percent(int remainder) {
+    public int percent(int remainder, Credit credit) {
         int p = credit.getInterestRate();//её наверное надо будет на 12 поделить
         return remainder * p;
     }
 
     //сумма ежемесячного платежа
-    private int  amountOfMonthlyPayment(int creditTime,int remainder)
-    {
-        return deptPaart(creditTime)+percent(remainder);
+    public int amountOfMonthlyPayment(int creditTime, int remainder, Credit credit) {
+        return deptPaart(creditTime, credit) + percent(remainder, credit);
     }
 /*
     int p = credit.getInterestRate();

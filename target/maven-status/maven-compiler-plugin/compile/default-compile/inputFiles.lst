@@ -1,25 +1,25 @@
-C:\Halmort\src\main\java\com\haulmont\testtask\config\WebConfig.java
-C:\Halmort\src\main\java\com\haulmont\testtask\config\SecurityConfig.java
-C:\Halmort\src\main\java\com\haulmont\testtask\controller\ClientController.java
-C:\Halmort\src\main\java\com\haulmont\testtask\controller\CreditOfferController.java
-C:\Halmort\src\main\java\com\haulmont\testtask\service\CreditService.java
-C:\Halmort\src\main\java\com\haulmont\testtask\controller\RegistrationController.java
-C:\Halmort\src\main\java\com\haulmont\testtask\repository\BankRepository.java
-C:\Halmort\src\main\java\com\haulmont\testtask\repository\UserRepository.java
-C:\Halmort\src\main\java\com\haulmont\testtask\BankApplication.java
-C:\Halmort\src\main\java\com\haulmont\testtask\repository\CreditRepository.java
-C:\Halmort\src\main\java\com\haulmont\testtask\model\Credit.java
-C:\Halmort\src\main\java\com\haulmont\testtask\controller\CreditController.java
-C:\Halmort\src\main\java\com\haulmont\testtask\repository\CreditOfferRepository.java
-C:\Halmort\src\main\java\com\haulmont\testtask\controller\BankController.java
-C:\Halmort\src\main\java\com\haulmont\testtask\security\SecurityUser.java
-C:\Halmort\src\main\java\com\haulmont\testtask\model\CreditOffer.java
-C:\Halmort\src\main\java\com\haulmont\testtask\model\Bank.java
-C:\Halmort\src\main\java\com\haulmont\testtask\model\ChartOfPayments.java
-C:\Halmort\src\main\java\com\haulmont\testtask\model\Role.java
-C:\Halmort\src\main\java\com\haulmont\testtask\repository\RoleRepository.java
-C:\Halmort\src\main\java\com\haulmont\testtask\security\UserDetailsServiceImpl.java
-C:\Halmort\src\main\java\com\haulmont\testtask\model\Client.java
-C:\Halmort\src\main\java\com\haulmont\testtask\model\User.java
-C:\Halmort\src\main\java\com\haulmont\testtask\repository\ClientRepository.java
-C:\Halmort\src\main\java\com\haulmont\testtask\model\Status.java
+C:\Users\info\OneDrive\Рабочий стол\Halmort\src\main\java\com\haulmont\testtask\repository\CreditOfferRepository.java
+C:\Users\info\OneDrive\Рабочий стол\Halmort\src\main\java\com\haulmont\testtask\model\Credit.java
+C:\Users\info\OneDrive\Рабочий стол\Halmort\src\main\java\com\haulmont\testtask\BankApplication.java
+C:\Users\info\OneDrive\Рабочий стол\Halmort\src\main\java\com\haulmont\testtask\service\CreditService.java
+C:\Users\info\OneDrive\Рабочий стол\Halmort\src\main\java\com\haulmont\testtask\controller\CreditController.java
+C:\Users\info\OneDrive\Рабочий стол\Halmort\src\main\java\com\haulmont\testtask\repository\ClientRepository.java
+C:\Users\info\OneDrive\Рабочий стол\Halmort\src\main\java\com\haulmont\testtask\config\SecurityConfig.java
+C:\Users\info\OneDrive\Рабочий стол\Halmort\src\main\java\com\haulmont\testtask\model\ChartOfPayments.java
+C:\Users\info\OneDrive\Рабочий стол\Halmort\src\main\java\com\haulmont\testtask\repository\BankRepository.java
+C:\Users\info\OneDrive\Рабочий стол\Halmort\src\main\java\com\haulmont\testtask\security\SecurityUser.java
+C:\Users\info\OneDrive\Рабочий стол\Halmort\src\main\java\com\haulmont\testtask\repository\UserRepository.java
+C:\Users\info\OneDrive\Рабочий стол\Halmort\src\main\java\com\haulmont\testtask\model\Role.java
+C:\Users\info\OneDrive\Рабочий стол\Halmort\src\main\java\com\haulmont\testtask\model\User.java
+C:\Users\info\OneDrive\Рабочий стол\Halmort\src\main\java\com\haulmont\testtask\repository\RoleRepository.java
+C:\Users\info\OneDrive\Рабочий стол\Halmort\src\main\java\com\haulmont\testtask\controller\ClientController.java
+C:\Users\info\OneDrive\Рабочий стол\Halmort\src\main\java\com\haulmont\testtask\controller\RegistrationController.java
+C:\Users\info\OneDrive\Рабочий стол\Halmort\src\main\java\com\haulmont\testtask\model\CreditOffer.java
+C:\Users\info\OneDrive\Рабочий стол\Halmort\src\main\java\com\haulmont\testtask\controller\BankController.java
+C:\Users\info\OneDrive\Рабочий стол\Halmort\src\main\java\com\haulmont\testtask\security\UserDetailsServiceImpl.java
+C:\Users\info\OneDrive\Рабочий стол\Halmort\src\main\java\com\haulmont\testtask\model\Bank.java
+C:\Users\info\OneDrive\Рабочий стол\Halmort\src\main\java\com\haulmont\testtask\controller\CreditOfferController.java
+C:\Users\info\OneDrive\Рабочий стол\Halmort\src\main\java\com\haulmont\testtask\model\Status.java
+C:\Users\info\OneDrive\Рабочий стол\Halmort\src\main\java\com\haulmont\testtask\repository\CreditRepository.java
+C:\Users\info\OneDrive\Рабочий стол\Halmort\src\main\java\com\haulmont\testtask\model\Client.java
+C:\Users\info\OneDrive\Рабочий стол\Halmort\src\main\java\com\haulmont\testtask\config\WebConfig.java

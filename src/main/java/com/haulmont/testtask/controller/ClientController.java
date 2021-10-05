@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class ClientController {
@@ -40,17 +39,17 @@ public class ClientController {
         clientRepository.deleteById(id);
         return "redirect:/clients";
     }
-    @GetMapping("/edit/{id}")
+    @GetMapping("/editClient/{id}")
     public String getClient(@PathVariable Long id, Model model) {
 
         Client client= clientRepository.findById(id).orElse(new Client());//TODO Сделать тут ElseThrow и выкидыватьк какую-нибудь ошибку, если объект null
         model.addAttribute("client", client);
-        return "edit";
+        return "editClient";
     }
-    @GetMapping("/edit")
+    @GetMapping("/editClient")
     public String addClient(Model model) {
 
         model.addAttribute("client", new Client());
-        return "edit";
+        return "editClient";
     }
 }
