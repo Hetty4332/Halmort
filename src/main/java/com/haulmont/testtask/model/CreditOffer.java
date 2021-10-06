@@ -19,8 +19,7 @@ public class CreditOffer {
     private Credit credit;
     @Column
     private int sumCredit;
-
-    @OneToMany(mappedBy = "chartOfPayments", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "creditOffer", fetch = FetchType.LAZY)
     private List<Payment> chartOfPayments;
 
 }

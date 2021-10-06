@@ -28,7 +28,7 @@ public class ClientController {
         return "clients";
     }
 
-    @PostMapping("/edit")
+    @PostMapping("/editClient")
     public String addClient(@ModelAttribute("client") Client client) {
         clientRepository.save(client);
         return "redirect:/clients";
