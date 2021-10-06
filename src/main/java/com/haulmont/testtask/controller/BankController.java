@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
@@ -29,14 +30,20 @@ public class BankController {
     @PostMapping("/banks")
     public String addBank (@ModelAttribute("bank") Bank bank)
     {
+       // bank.setName("Сбербанк");
         bankRepository.save(bank);
         return "banks";
     }
-/*    @PostMapping("/banks")
-    public String deleteBank (@ModelAttribute("bank") Bank bank)
-    {
-        bankRepository.delete(bank);
-        return "banks";
-    }*/
+    @GetMapping("/deleteClient/{id}")
+    public String deleteClient(@PathVariable Long id) {
+        bankRepository.deleteById(id);
+        return "redirect:/banks";
+    }
+    @GetMapping("/editBank/{id}")
+    public String getClient(@PathVariable Long id, Model model) {
 
+        Bank bank= bankRepository.findById(id).orElse(new Bank());//TODO Сделать тут ElseThrow и выкидыватьк какую-нибудь ошибку, если объект null
+        model.addAttribute("bank", bank);
+        return "editBank";
+    }
 }
