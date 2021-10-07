@@ -62,6 +62,6 @@ public class CreditOfferController {
         }
         creditOffer.setChartOfPayments(chartOfPayments);
         creditOfferRepository.save(creditOffer);
-        return "creditOffer";
+        return "redirect:/creditOffer";
     }
 }

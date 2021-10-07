@@ -34,7 +34,7 @@ public class BankController {
         bankRepository.save(bank);
         return "banks";
     }
-    @GetMapping("/deleteClient/{id}")
+    @GetMapping("/deleteBank/{id}")
     public String deleteClient(@PathVariable Long id) {
         bankRepository.deleteById(id);
         return "redirect:/banks";
