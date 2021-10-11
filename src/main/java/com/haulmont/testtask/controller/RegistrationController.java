@@ -2,6 +2,7 @@ package com.haulmont.testtask.controller;
 
 
 
+import com.haulmont.testtask.model.Client;
 import com.haulmont.testtask.model.User;
 import com.haulmont.testtask.security.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.annotation.PostConstruct;
 
 @Controller
 public class RegistrationController {
@@ -65,5 +68,14 @@ public class RegistrationController {
         }*/
 
         return "redirect:/login";
+    }
+
+    @PostConstruct
+    public void init(){
+        User user = new User();
+        user.setUsername("q");
+        user.setPassword("q");
+        user.setEmail("q@q.q");
+        userService.saveUser(user);
     }
 }

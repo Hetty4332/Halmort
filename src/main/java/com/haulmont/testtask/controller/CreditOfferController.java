@@ -1,6 +1,8 @@
 package com.haulmont.testtask.controller;
 
+import com.haulmont.testtask.dto.CreditOfferRequest;
 import com.haulmont.testtask.model.Client;
+import com.haulmont.testtask.model.Credit;
 import com.haulmont.testtask.model.CreditOffer;
 import com.haulmont.testtask.model.Payment;
 import com.haulmont.testtask.repository.ClientRepository;
@@ -18,6 +20,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class CreditOfferController {
@@ -33,10 +36,7 @@ public class CreditOfferController {
 
     @GetMapping("/creditOffer")
     public String getCreditOffer(Model model) {
-        List<CreditOffer> creditOffers = new ArrayList<>();
-        creditOffers.addAll(creditOfferRepository.findAll());
-        model.addAttribute("creditOffers", creditOffers);
-        model.addAttribute("creditOffer", new CreditOffer());
+        model.addAttribute("creditOffer", new CreditOfferRequest());
         model.addAttribute("payment", new Payment());
         model.addAttribute("clients", clientRepository.findAll());
         model.addAttribute("credits", creditRepository.findAll());
@@ -44,24 +44,41 @@ public class CreditOfferController {
     }
 
     @PostMapping("/creditOffer")
-    public String addCreditOffer(@ModelAttribute("creditOffer") CreditOffer creditOffer, @ModelAttribute("time") int time) {
+    public String addCreditOffer(@ModelAttribute("creditOffer") CreditOfferRequest creditOffer) {
         //надо вычислить остаток.
         //time- срок кредита
+
+        Optional<Credit> creditOptional = creditRepository.findById(creditOffer.getCreditId());
+        if (creditOptional.isEmpty()) {
+            return "redirect:/creditOffer";
+        }
+        Optional<Client> clientOptional = clientRepository.findById(creditOffer.getClientId());
+        if (creditOptional.isEmpty()) {
+            return "redirect:/creditOffer";
+        }
+
+        Credit credit = creditOptional.get();
+        Client client = clientOptional.get();
         List<Payment> chartOfPayments = new ArrayList<>();
+        int time = creditOffer.getCountMonthCredit();
         int remainder = creditOffer.getSumCredit();
         for (int i = 0; i < time; i++) {
-            Payment payment = new Payment();
-            payment.setPaymentDate(LocalDate.now().plusMonths(i));
             if (i > 0) {
                 remainder = creditOffer.getSumCredit() - chartOfPayments.get(i - 1).getPaymentSum();
             }
-            payment.setPaymentSum(creditOfferService.amountOfMonthlyPayment(time, remainder,creditOffer.getCredit()));
-            payment.setCreditBodyRepayment(creditOfferService.deptPaart(time,creditOffer.getCredit()));
-            payment.setAmountOfInterestRepayment(creditOfferService.percent(remainder,creditOffer.getCredit()));
+            Payment payment = new Payment();
+            payment.setPaymentDate(LocalDate.now().plusMonths(i));
+
+            payment.setPaymentSum(creditOfferService.amountOfMonthlyPayment(time, remainder, credit));
+            payment.setCreditBodyRepayment(creditOfferService.deptPaart(time, credit));
+            payment.setAmountOfInterestRepayment(creditOfferService.percent(remainder, credit));
             chartOfPayments.add(payment);
-        }
-        creditOffer.setChartOfPayments(chartOfPayments);
-        creditOfferRepository.save(creditOffer);
+    }
+        CreditOffer saveCreditOffer = new CreditOffer();
+        saveCreditOffer.setChartOfPayments(chartOfPayments);
+        saveCreditOffer.setCredit(credit);
+        saveCreditOffer.setClient(client);
+        creditOfferRepository.save(saveCreditOffer);
         return "redirect:/creditOffer";
     }
 }

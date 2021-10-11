@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,6 +56,15 @@ public class CreditController {
         model.addAttribute("banks", bankRepository.findAll() );
         model.addAttribute("credit", new Credit());
         return "editCredit";
+    }
+
+
+    @PostConstruct
+    public void init(){
+        Credit credit = new Credit();
+        credit.setCreditLimit(1000000);
+        credit.setInterestRate(10);
+        creditRepository.save(credit);
     }
 }
 

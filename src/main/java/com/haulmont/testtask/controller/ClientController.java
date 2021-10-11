@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,5 +67,15 @@ public class ClientController {
 
         model.addAttribute("client", new Client());
         return "editClient";
+    }
+
+    @PostConstruct
+    public void init(){
+        Client client = new Client();
+        client.setName("Иванов Иван");
+        client.setPhoneNumber("88005553535");
+        client.setEmail("v@v.v");
+        client.setPassportNumber("6565989898");
+        clientRepository.save(client);
     }
 }
