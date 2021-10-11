@@ -25,6 +25,16 @@ public class RegistrationController {
         return "login";
 
     }
+/*
+    @GetMapping("/loginError")
+    public String loginError(Throwable throwable, Model model) {
+        String errorMessage = (throwable != null ? throwable.getMessage() : "Unknown error");
+        model.addAttribute("errorMessage", errorMessage);
+        return "loginError";
+    }
+*/
+
+
     @GetMapping("/")
     public String getMain(Model model){
 

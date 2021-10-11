@@ -30,7 +30,7 @@ public class BankController {
     @PostMapping("/banks")
     public String addBank (@ModelAttribute("bank") Bank bank)
     {
-       // bank.setName("Сбербанк");
+        bank.setName("Сбербанк");
         bankRepository.save(bank);
         return "banks";
     }

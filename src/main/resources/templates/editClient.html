@@ -15,6 +15,7 @@
         <div class="col">
             <label for="name" class="form-label">ФИО: </label>
             <input id="name" class="form-control" type="text" th:field="*{name}"/>
+            <td class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
         </div>
         <div class="col">
             <label for="phoneNumber" class="form-label">Телефон: </label>
@@ -25,10 +26,14 @@
         <div class="col">
             <label for="email" class="form-label">Email: </label>
             <input id="email" type="text" class="form-control" th:field="*{email}"/>
+            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
+
         </div>
         <div class="col">
             <label for="passportNumber" class="form-label">Паспорт: </label>
             <input id="passportNumber" type="text" class="form-control" th:field="*{passportNumber}"/>
+
+            <td th:text="dsd" th:if="${#fields.hasErrors('passportNumber')}" th:errors="*{passportNumber}"></td>
         </div>
     </div>
     <button class="btn btn-secondary mt-2" type="submit">Создать/редактировать</button>

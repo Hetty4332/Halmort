@@ -23,6 +23,14 @@
                 <input id="percent" class="form-control" type="text" th:field="*{interestRate}"/>
             </div>
         </div>
+        <div class="row">
+            <div class="col">
+                <select th:field="*{creditBank}" class="form-select" aria-label="Default select example" >
+                  <!--  <option selected> Выбор банка</option>-->
+                    <option th:each="bank : ${banks}" th:value="${bank}" th:text="${bank.name}" ></option>
+                </select>
+            </div>
+        </div>
         <button class="btn btn-secondary mt-2" type="submit">Создать/редактировать</button>
     </form>
 </div>

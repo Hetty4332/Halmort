@@ -73,7 +73,13 @@
     }
 </style>
 
+<body>
 <div class="p-x-1 p-y-3">
+<div class="container">
+
+    <div class="m-x-auto" th:if="${param.error}">
+        <p class="text-danger">Неверный логин или пароль!</p>
+    </div>
     <form class="card card-block m-x-auto bg-faded form-width" th:action="@{/login}" method="post">
         <legend class="m-b-1 text-xs-center">Welcome!</legend>
         <div class="form-group input-group">
@@ -90,3 +96,5 @@
     </form>
     <a href="/registration">Регистрация</a>
 </div>
+</div>
+</body>
