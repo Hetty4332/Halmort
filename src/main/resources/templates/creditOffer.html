@@ -29,7 +29,7 @@
                     <option th:value="-1" selected> Выбор кредита</option>
                     <option th:each="credit : ${credits}"
                             th:value="${credit.getId()}"
-                            th:utext="${credit.creditLimit}+'-лимит кредита '+${credit.interestRate}+'- процентная ставка'"></option>
+                            th:utext="${credit.creditLimit}+'-лимит кредита '+${credit.interestRate}+'- процентная ставка '+${credit.creditBank.getName()}"></option>
                 </select>
             </div>
         </div>
@@ -37,6 +37,8 @@
             <div class="col">
                 <label for="sum" class="form-label"> Сумма </label>
                 <input id="sum" class="form-control" type="text" th:field="*{sumCredit}"/>
+                <td th:if="${#fields.hasErrors('sumCredit')}" th:errors="*{sumCredit}"></td>
+
             </div>
         </div>
         <div class="row">
@@ -46,6 +48,7 @@
             </div>
         </div>
         <button class="btn btn-secondary mt-2" type="submit">Сформировать</button>
+        <a class="btn btn-secondary mt-2" th:href="@{/}">Главная</a>
     </form>
 
 

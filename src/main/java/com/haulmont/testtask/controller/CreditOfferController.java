@@ -79,7 +79,6 @@ public class CreditOfferController {
         saveCreditOffer.setCredit(credit);
         saveCreditOffer.setClient(client);
 
-
         for (int i = 0; i < time; i++) {
             if (i > 0) {
                 remainder = creditOffer.getSumCredit() - chartOfPayments.get(i - 1).getPaymentSum();

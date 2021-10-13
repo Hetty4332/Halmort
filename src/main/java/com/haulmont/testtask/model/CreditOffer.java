@@ -1,6 +1,6 @@
 package com.haulmont.testtask.model;
 
-import com.haulmont.testtask.repository.ChartOfPaymentsRepository;
+import com.haulmont.testtask.annotation.CreditLimit;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -18,6 +18,7 @@ public class CreditOffer {
     @ManyToOne(fetch = FetchType.LAZY)
     private Credit credit;
     @Column
+    @CreditLimit
     private int sumCredit;
     @OneToMany(fetch = FetchType.LAZY)
     private List<Payment> chartOfPayments;

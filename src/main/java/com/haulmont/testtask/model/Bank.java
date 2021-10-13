@@ -14,9 +14,9 @@ public class Bank {
     private Long id;
     @Column
     private String name;
-    @OneToMany(mappedBy = "creditBank", fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Credit> credits;
-    @OneToMany(mappedBy = "clientBank", fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Client> clients;
 
 }

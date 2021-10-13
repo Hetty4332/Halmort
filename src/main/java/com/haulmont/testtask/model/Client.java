@@ -25,8 +25,6 @@ public class Client {
     @Column
     @Size(max=10)
     private String passportNumber;
-    @ManyToOne
-    private Bank clientBank;
-    @OneToMany (cascade = CascadeType.ALL)
+    @OneToMany (cascade = CascadeType.ALL, mappedBy = "client")
     private List<CreditOffer> creditOffers;
 }
