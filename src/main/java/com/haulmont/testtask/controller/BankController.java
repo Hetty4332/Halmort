@@ -1,6 +1,7 @@
 package com.haulmont.testtask.controller;
 
 import com.haulmont.testtask.model.Bank;
+import com.haulmont.testtask.model.Client;
 import com.haulmont.testtask.repository.BankRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,12 +28,17 @@ public class BankController {
         model.addAttribute("bank", new Bank());
         return "banks";
     }
-    @PostMapping("/banks")
+    @PostMapping("/editBank")
     public String addBank (@ModelAttribute("bank") Bank bank)
     {
-        bank.setName("Сбербанк");
         bankRepository.save(bank);
-        return "banks";
+        return "redirect:/banks";
+    }
+    @GetMapping("/editBank")
+    public String addClient(Model model) {
+
+        model.addAttribute("bank", new Bank());
+        return "editBank";
     }
     @GetMapping("/deleteBank/{id}")
     public String deleteClient(@PathVariable Long id) {

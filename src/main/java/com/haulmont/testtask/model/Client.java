@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -26,7 +27,6 @@ public class Client {
     private String passportNumber;
     @ManyToOne
     private Bank clientBank;
-    @OneToOne(cascade = CascadeType.ALL)
-    private CreditOffer creditOffer;
-
+    @OneToMany (cascade = CascadeType.ALL)
+    private List<CreditOffer> creditOffers;
 }

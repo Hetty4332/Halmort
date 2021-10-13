@@ -10,22 +10,22 @@ public class CreditOfferService {
 
 
     // долговая часть ежемесячного платежа
-     public int deptPaart(int creditTime, Credit credit) {
-        int s = credit.getCreditOffer().getSumCredit();
+     public int deptPaart(int creditTime, int sumCredit) {
+        int s = sumCredit;
         int n = creditTime;
         return s / n;
 
     }
 
     //проценты в ежемесячном платеже
-    public int percent(int remainder, Credit credit) {
-        int p = credit.getInterestRate();//её наверное надо будет на 12 поделить
-        return remainder * p;
+    public double percent(double remainder, double interestRate) {
+
+        return remainder *(interestRate/100.0/12.0) ;//поделить на 12?
     }
 
     //сумма ежемесячного платежа
-    public int amountOfMonthlyPayment(int creditTime, int remainder, Credit credit) {
-        return deptPaart(creditTime, credit) + percent(remainder, credit);
+    public double amountOfMonthlyPayment(int creditTime, double remainder, int sumCredit, double interestRate) {
+        return deptPaart(creditTime, sumCredit) + percent(remainder, interestRate);
     }
 /*
     int p = credit.getInterestRate();

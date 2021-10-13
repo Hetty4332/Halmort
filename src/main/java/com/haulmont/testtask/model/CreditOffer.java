@@ -13,13 +13,13 @@ public class CreditOffer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false)
     private Long id;
-    @OneToOne(mappedBy = "creditOffer", fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Client client;
-    @OneToOne(mappedBy = "creditOffer", fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Credit credit;
     @Column
     private int sumCredit;
-    @OneToMany(mappedBy = "creditOffer", fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY)
     private List<Payment> chartOfPayments;
 
 }

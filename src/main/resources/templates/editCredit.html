@@ -27,7 +27,7 @@
             <div class="col">
                 <select th:field="*{creditBank}" class="form-select" aria-label="Default select example" >
                   <!--  <option selected> Выбор банка</option>-->
-                    <option th:each="bank : ${banks}" th:value="${bank}" th:text="${bank.name}" ></option>
+                    <option th:each="bank : ${banks}" th:value="${bank.getId()}" th:text="${bank.name}" ></option>
                 </select>
             </div>
         </div>

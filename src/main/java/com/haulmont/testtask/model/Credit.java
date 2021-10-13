@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Data
@@ -18,9 +19,9 @@ public class Credit {
     private int creditLimit;
     @Column
     @NotNull
-    private int interestRate;
+    private double interestRate;
     @ManyToOne (cascade = CascadeType.ALL)
     private Bank creditBank;
-    @OneToOne(cascade = CascadeType.ALL)
-    private CreditOffer creditOffer;
+    @OneToMany (cascade = CascadeType.ALL)
+    private List<CreditOffer> creditOffers;
 }

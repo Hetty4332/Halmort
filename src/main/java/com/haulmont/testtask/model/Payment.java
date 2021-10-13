@@ -17,13 +17,10 @@ public class Payment {
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private LocalDate paymentDate;
     @Column
-    private int paymentSum;
+    private double paymentSum;
     @Column
-    private int creditBodyRepayment;//Сумма гашения тела кредита
+    private double creditBodyRepayment;//Сумма гашения тела кредита
     @Column
-    private int amountOfInterestRepayment;//Сумма гашения процентов
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
-    private CreditOffer creditOffer;
-
+    private double amountOfInterestRepayment;//Сумма гашения процентов
 
 }
