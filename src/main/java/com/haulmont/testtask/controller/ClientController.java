@@ -69,7 +69,7 @@ public class ClientController {
         return "editClient";
     }
 
-    @PostConstruct
+/*    @PostConstruct
     public void init(){
         Client client = new Client();
         client.setName("Иванов Иван");
@@ -77,5 +77,5 @@ public class ClientController {
         client.setEmail("v@v.v");
         client.setPassportNumber("6565989898");
         clientRepository.save(client);
-    }
+    }*/
 }

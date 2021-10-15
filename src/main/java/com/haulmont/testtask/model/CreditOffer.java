@@ -4,6 +4,8 @@ import com.haulmont.testtask.annotation.CreditLimit;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -14,11 +16,13 @@ public class CreditOffer {
     @Column(nullable = false)
     private Long id;
     @ManyToOne(fetch = FetchType.EAGER)
+    @NotNull
     private Client client;
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     private Credit credit;
     @Column
-    @CreditLimit
+    @NotBlank
     private int sumCredit;
     @OneToMany(fetch = FetchType.LAZY)
     private List<Payment> chartOfPayments;

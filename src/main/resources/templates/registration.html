@@ -92,10 +92,12 @@
             <input class="form-control" id="password" type="password"  th:field="*{password}"/>
             <label for="password">Пароль</label>
         </div>
-        <!--        <div class="form-group has-float-label">-->
-        <!--            <input class="form-control" id="passwordConfirm" type="password" placeholder="••••••••"/>-->
-        <!--            <label for="password">Пароль повторно</label>-->
-        <!--        </div>-->
+             <div class="form-group has-float-label">
+                 <input class="form-control" id="passwordConfirm" type="password"/>
+                   <label for="passwordConfirm">Пароль повторно</label>
+                 <td class="text-danger" th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}"></td>
+             </div>
+
         <div class="text-xs-center">
             <button class="btn btn-block btn-primary" type="submit">Регистрация</button>
         </div>

@@ -3,6 +3,7 @@ package com.haulmont.testtask.controller;
 import com.haulmont.testtask.model.Bank;
 import com.haulmont.testtask.model.Client;
 import com.haulmont.testtask.repository.BankRepository;
+import com.haulmont.testtask.service.BankService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,38 +19,38 @@ import java.util.List;
 public class BankController {
 
     @Autowired
-    private BankRepository bankRepository;
+    private BankService bankService;
 
     @GetMapping("/banks")
     public String getBanks(Model model) {
         List<Bank> banks = new ArrayList<>();
-        banks.addAll(bankRepository.findAll());
+        banks.addAll(bankService.getBanks());
         model.addAttribute("banks", banks);
         model.addAttribute("bank", new Bank());
         return "banks";
     }
+
     @PostMapping("/editBank")
-    public String addBank (@ModelAttribute("bank") Bank bank)
-    {
-        bankRepository.save(bank);
+    public String addBank(@ModelAttribute("bank") Bank bank) {
+        bankService.saveBank(bank);
         return "redirect:/banks";
     }
-    @GetMapping("/editBank")
-    public String addClient(Model model) {
 
+    @GetMapping("/editBank")
+    public String addBank (Model model) {
         model.addAttribute("bank", new Bank());
         return "editBank";
     }
+
     @GetMapping("/deleteBank/{id}")
-    public String deleteClient(@PathVariable Long id) {
-        bankRepository.deleteById(id);
+    public String deleteBank (@PathVariable Long id) {
+        bankService.deleteBankById(id);
         return "redirect:/banks";
     }
-    @GetMapping("/editBank/{id}")
-    public String getClient(@PathVariable Long id, Model model) {
 
-        Bank bank= bankRepository.findById(id).orElse(new Bank());//TODO Сделать тут ElseThrow и выкидыватьк какую-нибудь ошибку, если объект null
-        model.addAttribute("bank", bank);
+    @GetMapping("/editBank/{id}")
+    public String getBank (@PathVariable Long id, Model model) {
+        model.addAttribute("bank", bankService.getBankById(id));
         return "editBank";
     }
 }
