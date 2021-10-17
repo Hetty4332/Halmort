@@ -83,6 +83,6 @@ public class ClientController {
         client.setPhoneNumber("88005553535");
         client.setEmail("v@v.v");
         client.setPassportNumber("6565989898");
-        clientRepository.save(client);
+        clientService.saveClient(client);
     }
 }

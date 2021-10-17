@@ -29,7 +29,7 @@
     <tr th:each="credit : ${credits}">
         <td th:utext="${credit.creditLimit}"></td>
         <td th:utext="${credit.interestRate}"></td>
-        <td th:utext="${credit.creditBank.getName()}"></td>
+        <td th:utext="${credit.getIdBank()}"></td>
 
         <td>
             <a class="btn btn-success" th:href="@{/editCredit/{id}(id=${credit.getId()})}">
