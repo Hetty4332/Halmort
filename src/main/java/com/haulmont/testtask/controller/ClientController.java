@@ -2,6 +2,7 @@ package com.haulmont.testtask.controller;
 
 import com.haulmont.testtask.model.Client;
 import com.haulmont.testtask.repository.ClientRepository;
+import com.haulmont.testtask.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,12 +22,12 @@ import java.util.List;
 public class ClientController {
 
     @Autowired
-    private ClientRepository clientRepository;
+    private ClientService clientService;
 
     @GetMapping("/clients")
     public String getClient(Model model) {
         List<Client> clients = new ArrayList<>();
-        clients.addAll(clientRepository.findAll());
+        clients.addAll(clientService.getClients());
         model.addAttribute("clients", clients);
         model.addAttribute("client", new Client());
         return "clients";
@@ -42,7 +43,7 @@ public class ClientController {
             if (client.getPhoneNumber().isEmpty()) {
                 client.setPhoneNumber("Не указан");
             }
-            clientRepository.save(client);
+            clientService.saveClient(client);
         } catch (Exception e) {
             return e.getMessage();
         }
@@ -52,14 +53,14 @@ public class ClientController {
     //тут сделать либо пост либо делет.кнопку обернуть
     @GetMapping("/deleteClient/{id}")
     public String deleteClient(@PathVariable Long id) {
-        clientRepository.deleteById(id);
+        clientService.deleteClientById(id);
         return "redirect:/clients";
     }
 
     @GetMapping("/editClient/{id}")
     public String getClient(@PathVariable Long id, Model model) {
 
-        Client client = clientRepository.findById(id).orElse(new Client());//TODO Сделать тут ElseThrow и выкидыватьк какую-нибудь ошибку, если объект null
+        Client client = clientService.getClientById(id);
         model.addAttribute("client", client);
         return "editClient";
     }

@@ -5,6 +5,8 @@ import com.haulmont.testtask.model.Client;
 import com.haulmont.testtask.model.Credit;
 import com.haulmont.testtask.repository.BankRepository;
 import com.haulmont.testtask.repository.CreditRepository;
+import com.haulmont.testtask.service.BankService;
+import com.haulmont.testtask.service.CreditService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,14 +23,15 @@ import java.util.List;
 @Controller
 public class CreditController {
     @Autowired
-    private CreditRepository creditRepository;
+    private CreditService creditService;
     @Autowired
-    private BankRepository bankRepository;
+    private BankService bankService;
+
 
     @GetMapping("/credits")
     public String getCredits(Model model) {
         List<Credit> credits = new ArrayList<>();
-        credits.addAll(creditRepository.findAll());
+        credits.addAll(creditService.getCredits());
         model.addAttribute("credits", credits);
         model.addAttribute("credit", new Credit());
 
@@ -38,24 +41,23 @@ public class CreditController {
 
     @PostMapping("/editCredit")
     public String addCredit(@ModelAttribute("credit") Credit credit) {
-        creditRepository.save(credit);
+        creditService.saveCredit(credit);
         return "redirect:/credits";
     }
     @GetMapping("/deleteCredit/{id}")
     public String deleteCredit(@PathVariable Long id) {
-        creditRepository.deleteById(id);
+        creditService.deleteCreditById(id);
         return "redirect:/credits";
     }
     @GetMapping("/editCredit/{id}")
     public String getCredit(@PathVariable Long id, Model model) {
 
-        Credit credit= creditRepository.findById(id).orElse(new Credit());//TODO Сделать тут ElseThrow и выкидыватьк какую-нибудь ошибку, если объект null
-        model.addAttribute("credit", credit);
+        model.addAttribute("credit", creditService.getCreditById(id));
         return "editCredit";
     }
     @GetMapping("/editCredit")
     public String addCredit(Model model) {
-        model.addAttribute("banks", bankRepository.findAll() );
+        model.addAttribute("banks", bankService.getBanks());
         model.addAttribute("credit", new Credit());
         return "editCredit";
     }
