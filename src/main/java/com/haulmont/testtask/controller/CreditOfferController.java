@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -54,11 +55,19 @@ public class CreditOfferController {
     @PostMapping("/creditOffer")
     public String addCreditOffer(@ModelAttribute("creditOffer") @Valid CreditOfferRequest creditOffer, BindingResult bindingResult) {
 
+        validate(creditOffer, bindingResult);
         if (bindingResult.hasErrors()) {
             return "/creditOffer";
         }
         CreditOffer save = creditOfferService.saveCreditOffer(creditOffer);
         return "redirect:/payments/" + save.getId();
+    }
+
+    private void validate(CreditOfferRequest creditOffer, BindingResult bindingResult) {
+        Credit credit = creditService.getById(creditOffer.getCreditId());
+        if (creditOffer.getSumCredit() > credit.getCreditLimit()) {
+            bindingResult.addError(new FieldError("creditOffer", "sumCredit", "требуемая сумма выше предлагаемого кредитного лимита"));
+        }
     }
 
 }

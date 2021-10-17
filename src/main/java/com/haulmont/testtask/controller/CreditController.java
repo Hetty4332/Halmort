@@ -26,7 +26,10 @@ public class CreditController {
     private CreditService creditService;
     @Autowired
     private BankService bankService;
-
+    @Autowired
+    private CreditRepository creditRepository;
+    @Autowired
+    private BankRepository bankRepository;
 
     @GetMapping("/credits")
     public String getCredits(Model model) {

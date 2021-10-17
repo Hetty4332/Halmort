@@ -24,6 +24,10 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
+    @Autowired
+    private ClientRepository clientRepository;
+
+
     @GetMapping("/clients")
     public String getClient(Model model) {
         List<Client> clients = new ArrayList<>();
