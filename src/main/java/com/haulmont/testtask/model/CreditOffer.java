@@ -1,6 +1,5 @@
 package com.haulmont.testtask.model;
 
-import com.haulmont.testtask.annotation.CreditLimit;
 import lombok.Data;
 
 import javax.persistence.*;

@@ -3,7 +3,10 @@ package com.haulmont.testtask.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -18,13 +21,20 @@ public class Client {
     @Size(max=50)
     private String name;//ФИО клиента
     @Column
+    @NotBlank
     private String phoneNumber;
     @Column
     @Email
     private String email;
     @Column
-    @Size(max=10)
+    @NotBlank
+    @Size(max=10,min = 10)
     private String passportNumber;
     @OneToMany (cascade = CascadeType.ALL, mappedBy = "client")
     private List<CreditOffer> creditOffers;
+
+//    @AssertTrue(message="хуй знает что is not VALID")
+//    public boolean isValid() {
+//        return true;
+//    }
 }

@@ -15,7 +15,7 @@
         <h1>Кредитное предложение </h1>
         <div class="row">
             <div class="col">
-                <select  th:field="*{clientId}" class="form-select" aria-label="Default select example">
+                <select th:field="*{clientId}" class="form-select" aria-label="Default select example">
                     <option th:value="-1" selected> Выбор клиента</option>
                     <option th:each="client : ${clients}"
                             th:value="${client.id}"
@@ -25,14 +25,22 @@
             </div>
         </div>
         </br>
-
         <div class="row">
             <div class="col">
-                <select th:field="*{creditId}" class="form-select" aria-label="Default select example">
+                <select id="bankId" class="form-select" aria-label="Default select example">
+                    <option th:value="-1" selected> Выбор банка</option>
+                    <option th:each="bank : ${banks}"
+                            th:value="${bank.getId()}"
+                            th:utext="${bank.name}"></option>
+                </select>
+                <p class="text-danger" th:if="${#fields.hasErrors('creditId')}" th:errors="*{creditId}"></p>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <select id="creditId" th:field="*{creditId}" class="form-select" aria-label="Default select example">
                     <option th:value="-1" selected> Выбор кредита</option>
-                    <option th:each="credit : ${credits}"
-                            th:value="${credit.getId()}"
-                            th:utext="${credit.creditLimit}+'-лимит кредита '+${credit.interestRate}+'- процентная ставка '+${credit.creditBank.getName()}"></option>
                 </select>
                 <p class="text-danger" th:if="${#fields.hasErrors('creditId')}" th:errors="*{creditId}"></p>
 
@@ -77,4 +85,27 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
         crossorigin="anonymous"></script>
+
+<script th:inline="javascript">
+    let banks = [[${banks}]];
+    let selectBank = document.getElementById('bankId');
+    let selectCredit = document.getElementById('creditId')
+    selectBank.onchange = function () {
+        selectCredit.innerHTML = '';
+        for (let i = 0; i < banks.length; i++) {
+            if (banks[i].id == selectBank.value) {
+
+                for (let c = 0; c < banks[i].credits.length; c++) {
+                    let newSelect = document.createElement("option");
+                    let credit = banks[i].credits[c];
+                    console.log(credit);
+                    newSelect.setAttribute("value", credit.id);
+                    newSelect.text= credit.creditLimit + '-лимит кредита ' + credit.interestRate + '- процентная ставка ';
+                    selectCredit.appendChild(newSelect);
+                }
+            }
+        }
+        console.log("asd");
+    };
+</script>
 </html>

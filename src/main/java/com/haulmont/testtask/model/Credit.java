@@ -1,6 +1,5 @@
 package com.haulmont.testtask.model;
 
-import com.haulmont.testtask.annotation.CreditLimit;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -20,8 +19,8 @@ public class Credit {
     @Column
     @NotNull
     private double interestRate;
-    @ManyToOne
-    private Bank creditBank;
+//    @ManyToOne
+//    private Bank creditBank;
     @OneToMany (cascade = CascadeType.ALL, mappedBy = "credit")
     private List<CreditOffer> creditOffers;
 }

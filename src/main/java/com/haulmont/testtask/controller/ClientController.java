@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,6 +35,7 @@ public class ClientController {
     @PostMapping("/editClient")
     public String addClient(@ModelAttribute("client") @Valid Client client, BindingResult bindingResult) {
         try {
+            bindingResult.addError(new FieldError("client","valid","blah blah blah проверОЧКА из кода"));
             if (bindingResult.hasErrors()) {
                 return "/editClient";
             }
@@ -69,7 +71,7 @@ public class ClientController {
         return "editClient";
     }
 
-/*    @PostConstruct
+    @PostConstruct
     public void init(){
         Client client = new Client();
         client.setName("Иванов Иван");
@@ -77,5 +79,5 @@ public class ClientController {
         client.setEmail("v@v.v");
         client.setPassportNumber("6565989898");
         clientRepository.save(client);
-    }*/
+    }
 }

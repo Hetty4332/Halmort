@@ -2,6 +2,7 @@ package com.haulmont.testtask.controller;
 
 import com.haulmont.testtask.model.Bank;
 import com.haulmont.testtask.model.Client;
+import com.haulmont.testtask.model.Credit;
 import com.haulmont.testtask.repository.BankRepository;
 import com.haulmont.testtask.service.BankService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 

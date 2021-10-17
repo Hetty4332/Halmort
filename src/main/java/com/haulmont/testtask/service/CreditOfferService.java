@@ -51,7 +51,7 @@ public class CreditOfferService {
     }
 
     public List<Payment> getPayments(CreditOfferRequest creditOffer, PaymentRepository paymentRepository) {
-        Credit credit = getCreditById();
+        Credit credit = getCreditById(creditOffer.getCreditId());
         List<Payment> chartOfPayments = new ArrayList();
         int time = creditOffer.getCountMonthCredit();
         double remainder = creditOffer.getSumCredit();

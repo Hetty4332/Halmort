@@ -1,5 +1,6 @@
 package com.haulmont.testtask.controller;
 
+import com.haulmont.testtask.model.Bank;
 import com.haulmont.testtask.model.Client;
 import com.haulmont.testtask.model.Credit;
 import com.haulmont.testtask.repository.BankRepository;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -58,12 +61,42 @@ public class CreditController {
     }
 
 
-/*    @PostConstruct
+    @PostConstruct
     public void init(){
+        Bank bank = new Bank();
+        bank.setName("SBER");
+        bank = bankRepository.save(bank);
+
         Credit credit = new Credit();
         credit.setCreditLimit(1000000);
         credit.setInterestRate(10);
+        bank.setCredits(Collections.singletonList(credit));
+        bank = bankRepository.save(bank);
         creditRepository.save(credit);
-    }*/
+        Credit credit2 = new Credit();
+        credit2.setCreditLimit(2000000);
+        credit2.setInterestRate(12);
+        bank.getCredits().add(credit2);
+        bankRepository.save(bank);
+        creditRepository.save(credit2);
+
+
+        Bank bank2 = new Bank();
+        bank2.setName("VTB");
+        bank2 = bankRepository.save(bank2);
+
+        Credit credit3 = new Credit();
+        credit3.setCreditLimit(2000000);
+        credit3.setInterestRate(20);
+        bank2.setCredits(Collections.singletonList(credit3));
+        bank2 = bankRepository.save(bank2);
+        creditRepository.save(credit3);
+        Credit credit4 = new Credit();
+        credit4.setCreditLimit(4000000);
+        credit4.setInterestRate(14);
+        bank2.getCredits().add(credit4);
+        bankRepository.save(bank2);
+        creditRepository.save(credit4);
+    }
 }
 

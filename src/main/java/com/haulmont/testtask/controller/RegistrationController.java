@@ -70,12 +70,12 @@ public class RegistrationController {
         return "redirect:/login";
     }
 
-/*    @PostConstruct
+    @PostConstruct
     public void init(){
         User user = new User();
         user.setUsername("q");
         user.setPassword("q");
         user.setEmail("q@q.q");
         userService.saveUser(user);
-    }*/
+    }
 }
