@@ -42,9 +42,10 @@ public class CreditService {
         saveCredit.setInterestRate(credit.getInterestRate());
         saveCredit = creditRepository.save(saveCredit);
         Bank bank = bankService.getBankById(credit.getIdBank());
-        bank.getCredits().add(saveCredit);
-        bankService.saveBank(bank);
-
+        if (!bank.getCredits().contains(saveCredit)) {
+            bank.getCredits().add(saveCredit);
+            bankService.saveBank(bank);
+        }
     }
 
     public void deleteCreditById(Long id) {
@@ -54,6 +55,7 @@ public class CreditService {
     public CreditWeb getCreditById(Long id) {
         Credit credit = creditRepository.findById(id).orElse(new Credit());//TODO Сделать тут ElseThrow и выкидыватьк какую-нибудь ошибку, если объект null;
         CreditWeb creditWeb = new CreditWeb();
+        creditWeb.setId(credit.getId());
         creditWeb.setCreditLimit(credit.getCreditLimit());
         creditWeb.setInterestRate(credit.getInterestRate());
         return creditWeb;

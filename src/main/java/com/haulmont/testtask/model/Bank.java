@@ -4,6 +4,8 @@ package com.haulmont.testtask.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Entity
@@ -13,6 +15,7 @@ public class Bank {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column
+    @NotBlank
     private String name;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Credit> credits;

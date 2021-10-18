@@ -41,7 +41,7 @@ public class CreditController {
 
     @GetMapping("/editCredit/{id}")
     public String getCredit(@PathVariable Long id, Model model) {
-
+        model.addAttribute("banks", bankService.getBanks());
         model.addAttribute("credit", creditService.getCreditById(id));
         return "editCredit";
     }

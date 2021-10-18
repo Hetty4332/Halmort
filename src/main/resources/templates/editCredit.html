@@ -10,7 +10,7 @@
 
 <div class="container">
     <form class="col-sm-6" th:action="@{/editCredit}" method="post" th:object="${credit}">
-        <input class="form-control" type="text" hidden th:field="*{id}"/>
+        <input class="form-control" type="text" hidden th:value="${credit.id}"  th:field="*{id}"/>
         <div class="row">
             <div class="col">
                 <label for="limit" class="form-label">Лимит: </label>
@@ -25,8 +25,9 @@
         </div>
         <div class="row">
             <div class="col">
+                <label for="percent" class="form-label">Банк: </label>
                 <select th:field="*{idBank}" class="form-select" aria-label="Default select example" >
-                  <!--  <option selected> Выбор банка</option>-->
+                    <option value="-1" selected> Выбор банка</option>
                     <option th:each="bank : ${banks}" th:value="${bank.getId()}" th:text="${bank.name}" ></option>
                 </select>
             </div>

@@ -30,11 +30,4 @@ public class Client {
     @NotBlank
     @Size(max=10,min = 10)
     private String passportNumber;
-    @OneToMany (cascade = CascadeType.ALL, mappedBy = "client")
-    private List<CreditOffer> creditOffers;
-
-//    @AssertTrue(message="хуй знает что is not VALID")
-//    public boolean isValid() {
-//        return true;
-//    }
 }

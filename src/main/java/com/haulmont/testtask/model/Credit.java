@@ -19,6 +19,6 @@ public class Credit {
     @Column
     @NotNull
     private double interestRate;
-    @OneToMany (cascade = CascadeType.ALL, mappedBy = "credit")
+    @OneToMany (cascade = CascadeType.ALL)
     private List<CreditOffer> creditOffers;
 }

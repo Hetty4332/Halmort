@@ -15,13 +15,10 @@ public class CreditOffer {
     @Column(nullable = false)
     private Long id;
     @ManyToOne(fetch = FetchType.EAGER)
-    @NotNull
     private Client client;
-    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     private Credit credit;
     @Column
-    @NotBlank
     private int sumCredit;
     @OneToMany(fetch = FetchType.LAZY)
     private List<Payment> chartOfPayments;

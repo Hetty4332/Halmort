@@ -34,9 +34,9 @@
                             th:utext="${bank.name}"></option>
                 </select>
                 <p class="text-danger" th:if="${#fields.hasErrors('creditId')}" th:errors="*{creditId}"></p>
-
             </div>
         </div>
+        </br>
         <div class="row">
             <div class="col">
                 <select id="creditId" th:field="*{creditId}" class="form-select" aria-label="Default select example">
@@ -64,48 +64,29 @@
         <a class="btn btn-secondary mt-2" th:href="@{/}">Главная</a>
     </form>
 </div>
-<<!--script type="text/javascript">
-    function sendAjaxRequest() {
-        var country = $("#country").val();
-        $.get( "/regions?country=" + country, function( data ) {
-            $("#region").empty();
-            data.forEach(function(item, i) {
-                var option = "<option value = " + item + ">" + item +  "</option>";
-                $("#region").append(option);
-            });
-        });
-    };
-    $(document).ready(function() {
-        $("#country").change(function() {
-            sendAjaxRequest();
-        });
-    });
-</script>-->
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
         crossorigin="anonymous"></script>
 
 <script th:inline="javascript">
-    let banks = [[${banks}]];
     let selectBank = document.getElementById('bankId');
     let selectCredit = document.getElementById('creditId')
     selectBank.onchange = function () {
         selectCredit.innerHTML = '';
         for (let i = 0; i < banks.length; i++) {
             if (banks[i].id == selectBank.value) {
-
                 for (let c = 0; c < banks[i].credits.length; c++) {
+
                     let newSelect = document.createElement("option");
                     let credit = banks[i].credits[c];
-                    console.log(credit);
                     newSelect.setAttribute("value", credit.id);
-                    newSelect.text= credit.creditLimit + '-лимит кредита ' + credit.interestRate + '- процентная ставка ';
+                    newSelect.text = credit.creditLimit + '-лимит кредита ' + credit.interestRate + '- процентная ставка ';
                     selectCredit.appendChild(newSelect);
                 }
             }
         }
-        console.log("asd");
     };
+    let banks = [[${banks}]];
 </script>
 </html>

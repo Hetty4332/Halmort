@@ -50,7 +50,7 @@ public class CreditOfferService {
         return deptPart(creditTime, sumCredit) + percent(remainder, interestRate);
     }
 
-    public List<Payment> getPayments(CreditOfferRequest creditOffer, PaymentRepository paymentRepository) {
+    public List<Payment> getPayments(CreditOfferRequest creditOffer) {
         Credit credit = getCreditById(creditOffer.getCreditId());
         List<Payment> chartOfPayments = new ArrayList();
         int time = creditOffer.getCountMonthCredit();
@@ -75,14 +75,13 @@ public class CreditOfferService {
         Optional<Client> clientOptional = clientRepository.findById(creditOffer.getClientId());
         Client client = clientOptional.get();
         List<Payment> chartOfPayments = new ArrayList();
-        chartOfPayments.addAll(getPayments(creditOffer,paymentRepository));
+        chartOfPayments.addAll(getPayments(creditOffer));
         CreditOffer saveCreditOffer = new CreditOffer();
         saveCreditOffer.setChartOfPayments(chartOfPayments);
         saveCreditOffer.setCredit(credit);
         saveCreditOffer.setClient(client);
-        chartOfPayments.addAll(getPayments(creditOffer, paymentRepository));
-        creditOfferRepository.save(saveCreditOffer);
-        return saveCreditOffer;
+        saveCreditOffer.setSumCredit(creditOffer.getSumCredit());
+        return creditOfferRepository.save(saveCreditOffer);
     }
 
     private Credit getCreditById(Long id) {

@@ -40,7 +40,6 @@ public class ClientController {
     @PostMapping("/editClient")
     public String addClient(@ModelAttribute("client") @Valid Client client, BindingResult bindingResult) {
         try {
-            bindingResult.addError(new FieldError("client","valid","blah blah blah проверОЧКА из кода"));
             if (bindingResult.hasErrors()) {
                 return "/editClient";
             }

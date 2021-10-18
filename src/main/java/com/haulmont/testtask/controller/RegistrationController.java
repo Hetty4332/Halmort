@@ -8,9 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.annotation.PostConstruct;
 
 
 @Controller
@@ -22,7 +25,6 @@ public class RegistrationController {
 
     @GetMapping("/login")
     public String login() {
-
         return "login";
 
     }
@@ -44,23 +46,23 @@ public class RegistrationController {
         if (bindingResult.hasErrors()) {
             return "registration";
         }
-        /*if (!userForm.getPassword().equals(userForm.getPasswordConfirm())) {
-            model.addAttribute("passwordError", "Пароли не совпадают");
+        if (!userForm.getPassword().equals(userForm.getPasswordConfirm())) {
+            bindingResult.addError(new FieldError("userForm", "passwordConfirm", "Пароли не совпадают"));
             return "registration";
         }
         if (!userService.saveUser(userForm)) {
-            model.addAttribute("usernameError", "Пользователь с таким именем уже существует");
+            bindingResult.addError(new FieldError("userForm", "username", "Пользователь с таким именем уже существует"));
             return "registration";
-        }*/
+        }
         return "redirect:/login";
     }
 
-/*    @PostConstruct
+    @PostConstruct
     public void init(){
         User user = new User();
         user.setUsername("q");
         user.setPassword("q");
         user.setEmail("q@q.q");
         userService.saveUser(user);
-    }*/
+    }
 }

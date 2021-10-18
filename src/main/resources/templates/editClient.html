@@ -36,9 +36,6 @@
 
             <p class="text-danger" th:if="${#fields.hasErrors('passportNumber')}" th:errors="*{passportNumber}"></p>
         </div>
-
-        <p class="text-danger" th:if="${#fields.hasErrors('valid')}" th:errors="*{valid}"></p>
-
     </div>
     <button class="btn btn-secondary mt-2" type="submit">Создать/редактировать</button>
     <a class="btn btn-secondary mt-2" th:href="@{/}">Главная</a>

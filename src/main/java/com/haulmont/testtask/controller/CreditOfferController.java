@@ -1,16 +1,13 @@
 package com.haulmont.testtask.controller;
 
 import com.haulmont.testtask.dto.CreditOfferRequest;
-import com.haulmont.testtask.model.Client;
 import com.haulmont.testtask.model.Credit;
 import com.haulmont.testtask.model.CreditOffer;
 import com.haulmont.testtask.model.Payment;
 import com.haulmont.testtask.repository.CreditRepository;
-import com.haulmont.testtask.repository.PaymentRepository;
 import com.haulmont.testtask.service.BankService;
 import com.haulmont.testtask.service.ClientService;
 import com.haulmont.testtask.service.CreditOfferService;
-import com.haulmont.testtask.service.CreditService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,11 +50,13 @@ public class CreditOfferController {
 
 
     @PostMapping("/creditOffer")
-    public String addCreditOffer(@ModelAttribute("creditOffer") @Valid CreditOfferRequest creditOffer, BindingResult bindingResult) {
+    public String addCreditOffer(Model model, @ModelAttribute("creditOffer") @Valid CreditOfferRequest creditOffer, BindingResult bindingResult) {
 
         validate(creditOffer, bindingResult);
         if (bindingResult.hasErrors()) {
-            return "/creditOffer";
+            model.addAttribute("clients", clientService.getClients());
+            model.addAttribute("banks", bankService.getBanksHibernateFix());
+            return "creditOffer";
         }
         CreditOffer save = creditOfferService.saveCreditOffer(creditOffer);
         return "redirect:/payments/" + save.getId();

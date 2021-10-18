@@ -8,12 +8,14 @@ import com.haulmont.testtask.service.BankService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.annotation.PostConstruct;
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +35,10 @@ public class BankController {
     }
 
     @PostMapping("/editBank")
-    public String addBank(@ModelAttribute("bank") Bank bank) {
+    public String addBank(@ModelAttribute("bank") @Valid Bank bank, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "/editBank";
+        }
         bankService.saveBank(bank);
         return "redirect:/banks";
     }
