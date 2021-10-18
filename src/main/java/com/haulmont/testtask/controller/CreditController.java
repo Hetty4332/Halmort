@@ -24,7 +24,6 @@ public class CreditController {
     public String getCredits(Model model) {
 
         model.addAttribute("credits", creditService.getCredits());
-        model.addAttribute("credit", new Credit());
         return "credits";
     }
 

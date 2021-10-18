@@ -3,6 +3,7 @@ package com.haulmont.testtask.service;
 import com.haulmont.testtask.dto.CreditWeb;
 import com.haulmont.testtask.model.Bank;
 import com.haulmont.testtask.model.Credit;
+import com.haulmont.testtask.repository.BankRepository;
 import com.haulmont.testtask.repository.CreditRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,19 +17,20 @@ public class CreditService {
     CreditRepository creditRepository;
     @Autowired
     BankService bankService;
+    @Autowired
+    BankRepository bankRepository;
 
     public List<CreditWeb> getCredits() {
         List<CreditWeb> creditWebs = new ArrayList<>();
         List<Credit> credits = creditRepository.findAll();
-
         for (int i = 0; i < credits.size(); i++) {
             CreditWeb creditWeb = new CreditWeb();
             creditWeb.setId(credits.get(i).getId());
             creditWeb.setInterestRate(credits.get(i).getInterestRate());
             creditWeb.setCreditLimit(credits.get(i).getCreditLimit());
-            creditWeb.setBankName(credits.get(i).g);
+            Long id = bankRepository.findIdBankByCredits_id(credits.get(i).getId());
+            creditWeb.setBankName(bankRepository.findById(id).get().getName());
             creditWebs.add(creditWeb);
-
         }
         return creditWebs;
     }
@@ -41,6 +43,7 @@ public class CreditService {
         saveCredit = creditRepository.save(saveCredit);
         Bank bank = bankService.getBankById(credit.getIdBank());
         bank.getCredits().add(saveCredit);
+        bankService.saveBank(bank);
 
     }
 

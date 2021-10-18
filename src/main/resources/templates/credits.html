@@ -29,8 +29,7 @@
     <tr th:each="credit : ${credits}">
         <td th:utext="${credit.creditLimit}"></td>
         <td th:utext="${credit.interestRate}"></td>
-        <td th:utext="${credit.getIdBank()}"></td>
-
+        <td th:utext="${credit.bankName}"></td>
         <td>
             <a class="btn btn-success" th:href="@{/editCredit/{id}(id=${credit.getId()})}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">

@@ -19,8 +19,6 @@ public class Credit {
     @Column
     @NotNull
     private double interestRate;
-    //    @ManyToOne
-//    private Bank creditBank;
     @OneToMany (cascade = CascadeType.ALL, mappedBy = "credit")
     private List<CreditOffer> creditOffers;
 }
