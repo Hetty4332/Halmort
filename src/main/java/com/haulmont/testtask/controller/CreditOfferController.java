@@ -35,7 +35,6 @@ public class CreditOfferController {
     @GetMapping("/payments/{id}")
     public String getPayments(Model model, @PathVariable("id") Long id) {
         model.addAttribute("payments", creditOfferService.getPaymentsByCreditOfferId(id));
-
         return "payments";
     }
 
@@ -48,15 +47,22 @@ public class CreditOfferController {
         return "creditOffer";
     }
 
-
     @PostMapping("/creditOffer")
     public String addCreditOffer(Model model, @ModelAttribute("creditOffer") @Valid CreditOfferRequest creditOffer, BindingResult bindingResult) {
 
-        validate(creditOffer, bindingResult);
         if (bindingResult.hasErrors()) {
             model.addAttribute("clients", clientService.getClients());
-            model.addAttribute("banks", bankService.getBanksHibernateFix());
+            model.addAttribute("banks", bankService.getBanks());
             return "creditOffer";
+        }
+        else {
+            validate(creditOffer, bindingResult);
+            if (bindingResult.hasErrors())
+            {
+                model.addAttribute("clients", clientService.getClients());
+                model.addAttribute("banks", bankService.getBanks());
+                return "creditOffer";
+            }
         }
         CreditOffer save = creditOfferService.saveCreditOffer(creditOffer);
         return "redirect:/payments/" + save.getId();
@@ -68,5 +74,4 @@ public class CreditOfferController {
             bindingResult.addError(new FieldError("creditOffer", "sumCredit", "требуемая сумма выше предлагаемого кредитного лимита"));
         }
     }
-
 }

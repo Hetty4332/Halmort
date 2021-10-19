@@ -30,4 +30,5 @@ public class Client {
     @NotBlank
     @Size(max=10,min = 10)
     private String passportNumber;
+
 }

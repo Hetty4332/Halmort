@@ -7,10 +7,13 @@ import com.haulmont.testtask.service.CreditService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.validation.Valid;
 
 @Controller
 public class CreditController {
@@ -28,7 +31,10 @@ public class CreditController {
     }
 
     @PostMapping("/editCredit")
-    public String addCredit(@ModelAttribute("credit") CreditWeb credit) {
+    public String addCredit(@ModelAttribute("credit") @Valid CreditWeb credit, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "/editCredit";
+        }
         creditService.saveCredit(credit);
         return "redirect:/credits";
     }

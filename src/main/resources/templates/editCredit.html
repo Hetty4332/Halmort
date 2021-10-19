@@ -15,12 +15,14 @@
             <div class="col">
                 <label for="limit" class="form-label">Лимит: </label>
                 <input id="limit" class="form-control" type="text" th:field="*{creditLimit}"/>
+                <p class="text-danger" th:if="${#fields.hasErrors('creditLimit')}" th:errors="*{creditLimit}"></p>
             </div>
         </div>
         <div class="row">
             <div class="col">
                 <label for="percent" class="form-label">Процент: </label>
                 <input id="percent" class="form-control" type="text" th:field="*{interestRate}"/>
+                <p class="text-danger" th:if="${#fields.hasErrors('interestRate')}" th:errors="*{interestRate}"></p>
             </div>
         </div>
         <div class="row">
@@ -30,6 +32,7 @@
                     <option value="-1" selected> Выбор банка</option>
                     <option th:each="bank : ${banks}" th:value="${bank.getId()}" th:text="${bank.name}" ></option>
                 </select>
+                <p class="text-danger" th:if="${#fields.hasErrors('idBank')}" th:errors="*{idBank}"></p>
             </div>
         </div>
         <button class="btn btn-secondary mt-2" type="submit">Создать/редактировать</button>
