@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.annotation.PostConstruct;
 
 
 @Controller
@@ -55,14 +54,5 @@ public class RegistrationController {
             return "registration";
         }
         return "redirect:/login";
-    }
-
-    @PostConstruct
-    public void init(){
-        User user = new User();
-        user.setUsername("q");
-        user.setPassword("q");
-        user.setEmail("q@q.q");
-        userService.saveUser(user);
     }
 }

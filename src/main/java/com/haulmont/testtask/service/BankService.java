@@ -2,8 +2,6 @@ package com.haulmont.testtask.service;
 
 import com.haulmont.testtask.model.Bank;
 import com.haulmont.testtask.repository.BankRepository;
-import org.hibernate.Hibernate;
-import org.hibernate.proxy.HibernateProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
